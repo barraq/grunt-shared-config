@@ -88,8 +88,35 @@ module.exports = function( grunt ) {
 			}, false );
 		}
 
+		function isCSSColor ( value ) {
+			var colors = ['blueviolet', 'darkslateblue', 'brown', 'violet', 'darkseagreen', 'wheat', 'lightpink',
+				'darkcyan', 'cornsilk', 'yellowgreen', 'lightblue', 'rosybrown', 'limegreen', 'darkgrey', 'lightyellow',
+				'greenyellow', 'lightsalmon', 'thistle', 'burlywood', 'blue', 'honeydew', 'maroon', 'lightgreen',
+				'royalblue', 'lightsteelblue', 'palegreen', 'forestgreen', 'deepskyblue', 'mediumvioletred',
+				'lightcoral', 'white', 'gray', 'firebrick', 'magenta', 'olive', 'tomato', 'cyan', 'indianred',
+				'lightgoldenrodyellow', 'khaki', 'yellow', 'antiquewhite', 'seagreen', 'mediumorchid', 'gainsboro',
+				'lightslategrey', 'plum', 'darkolivegreen', 'teal', 'moccasin', 'lemonchiffon', 'oldlace', 'cadetblue',
+				'slategrey', 'aquamarine', 'blanchedalmond', 'orangered', 'cornflowerblue', 'darkorange', 'orange',
+				'darkgreen', 'saddlebrown', 'indigo', 'pink', 'dimgray', 'black', 'whitesmoke', 'snow', 'mediumpurple',
+				'fuchsia', 'turquoise', 'midnightblue', 'lightseagreen', 'green', 'purple', 'seashell', 'olivedrab',
+				'paleturquoise', 'orchid', 'bisque', 'dimgrey', 'mediumaquamarine', 'peachpuff', 'gold',
+				'lightslategray', 'darkred', 'mistyrose', 'goldenrod', 'navajowhite', 'ivory', 'salmon', 'steelblue',
+				'red', 'azure', 'navy', 'lightcyan', 'hotpink', 'mediumspringgreen', 'coral', 'mediumblue',
+				'darkkhaki', 'skyblue', 'mintcream', 'lime', 'floralwhite', 'ghostwhite', 'rebeccapurple', 'lavender',
+				'darkmagenta', 'darksalmon', 'lightgrey', 'chocolate', 'powderblue', 'tan', 'darkslategrey',
+				'darkorchid', 'slategray', 'aliceblue', 'crimson', 'darkslategray', 'lightskyblue', 'springgreen',
+				'darkviolet', 'deeppink', 'beige', 'lawngreen', 'slateblue', 'mediumturquoise', 'sandybrown',
+				'mediumslateblue', 'chartreuse', 'palegoldenrod', 'aqua', 'dodgerblue', 'silver', 'linen', 'sienna',
+				'lavenderblush', 'grey', 'darkturquoise', 'lightgray', 'darkgray', 'mediumseagreen', 'papayawhip',
+				'darkblue', 'peru', 'darkgoldenrod', 'palevioletred', 'transparent'];
+
+			return colors.reduce( function( previous, current ) {
+				return previous || mout.string.lowerCase( value ) === current;
+			});
+		}
+
 		function getStyleSafeValue( value ) {
-			if ( value !== null && !isStringNumber( value ) && !isCSSExpression( value ) && value[ 0 ] !== "#" && typeof value !== "boolean" ) {
+			if ( value !== null && !isStringNumber( value ) && !isCSSExpression( value ) && !isCSSColor( value ) && value[ 0 ] !== "#" && typeof value !== "boolean" ) {
 				value = "\"" + value + "\"";
 			}
 			return value;
